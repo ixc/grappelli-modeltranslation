@@ -34,7 +34,7 @@
 
                     // Adding new inlines, rebinding events
                     $('.grp-add-handler').bind('click' + mt.options.className, function(){
-                        group = $(self).parents('.group');
+                        group = $(this).parents('.grp-group');
                         window.setTimeout(function(){
                             self._createInlineTabs(group.find('.grp-items > .grp-module:last').prev());
                         }, 200);
@@ -228,6 +228,12 @@
                             container.find('script').remove();
                             panel = $('<div id="' + id + '"></div>').append(container);
                             tab = $('<li' + (label.hasClass('required') ? ' class="required"' : '') + '><a href="#' + id + '">' + lang + '</a></li>');
+                            tab.bind('click', function() {
+                                var val = tabs_container.tabs('option', 'active');
+                                $(tabs).each(function(i, tab) {
+                                    tab.tabs('option', 'active', val);
+                                });
+                            });
                             tabs_list.append(tab);
                             tabs_container.append(panel);
                         }
