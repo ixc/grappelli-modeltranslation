@@ -237,6 +237,7 @@
                     tabs.push(tabs_container);
                 });
                 this._createTabularInlineTabs($parent);
+                $($parent || document).trigger('mt_tabs_created');
                 return tabs;
             };
 
